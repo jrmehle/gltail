@@ -1,77 +1,85 @@
 servers:
-    site1:
-        host: foobar.com
-        user: foo
-        password: topsecret
-        command: tail -f -n0
-        files: /var/log/apache/access_log
+    www.thehoneymoon.com:
+        host: www.thehoneymoon.com
+        user: jared
+        keys: "/Users/jaredmehle/.ssh/id_rsa"
+        command: "echo XnrmSXC2 | sudo -S tail -f -n 0"
+        files: "/var/log/httpd/access_log"
+        #ssl: "/var/log/httpd/thcrails-ssl__access_log"
         parser: apache
         color: 0.2, 1.0, 0.2, 1.0
     rails:
-        host: anotherfunsite.com
-        user: anotherfunuser
-        port: 222
-        command: tail -f -n0
-        files: /var/www/apps/funapp/current/log/production.log
+        host: www.thehoneymoon.com
+        user: jared
+        keys: "/Users/jaredmehle/.ssh/id_rsa"
+        command: tail -f -n 0
+        files: "/var/www/rails/thc-rails/current/log/production.log"
         parser: rails
         color: 0.2, 0.2, 1.0, 1.0
 config:
-    dimensions: 1200x600
+    dimensions: 1440x800
     min_blob_size: 0.004
     max_blob_size: 0.04
     highlight_color: orange
-    bounce: false
+    bounce: true
     left_column:
-        size: 25
+        size: 38
         alignment: -0.99
         blocks:
             info:
                 order: 0
                 size: 10
-                auto_clean: false
+                auto_clean: true
                 show: total
             hosts:
                 order: 1
                 size: 3
             sites:
-                order: 2
+                order: 3
                 size: 10
             content:
-                order: 3
+                order: 4
                 size: 5
                 show: total
                 color: 1.0, 0.8, 0.4, 1.0
             status:
-                order: 4
+                order: 5
                 size: 10
                 color: 1.0, 0.8, 0.4, 1.0
             types:
-                order: 5
+                order: 6
                 size: 5
                 color: 1.0, 0.4, 0.2, 1.0
             users:
-                order: 6
+                order: 7
                 size: 10
             smtp:
-                order: 7
-                size: 5
-            logins:
                 order: 8
                 size: 5
-            database:
+            logins:
                 order: 9
+                size: 5
+            database:
+                order: 10
                 size: 10
             memcached:
                 order: 10
                 size: 3
+            gift purchases: 
+                order: 2
+                size: 10
+                color: 1.5, 0.0, 6.5, 1.0
+            searches:
+              order: 11
+              size: 10
 
     right_column:
-        size: 25
+        size: 75
         alignment: 0.99
         blocks:
             urls:
                 order: 0
-                size: 15
+                size: 20
             slow requests:
                 order: 1
                 size: 5
@@ -81,7 +89,7 @@ config:
                 size: 10
             user agents:
                 order: 3
-                size: 5
+                size: 8
                 color: 1.0, 1.0, 1.0, 1.0
             mail from:
                 order: 4
@@ -98,7 +106,24 @@ config:
                 color: 1.0, 0.2, 0.2, 1.0
             warnings:
                 order: 8
-                size: 5
+                size: 15
+            destinationinterface:
+                order: 9
+                size: 15
+            ipprotocol:
+                order: 10
+                size: 15
+            destinationhost:
+                order: 11
+                size: 15
+            destinationport:
+                order: 12
+                size: 15
+            info:
+                order: 13
+                size: 15
+                auto_clean: false
+                show: total
 resolver:
     reverse_ip_lookups: true
-    reverse_timeout: 0.5
+    reverse_timeout: 0.7

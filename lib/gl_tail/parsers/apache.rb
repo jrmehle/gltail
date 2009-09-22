@@ -44,13 +44,14 @@ class ApacheParser < Parser
       end
       add_activity(:block => 'content', :name => type)
       add_activity(:block => 'status', :name => status, :type => 3) # don't show a blob
-
       add_activity(:block => 'warnings', :name => "#{status}: #{url}") if status.to_i > 400
 
       # Events to pop up
-      add_event(:block => 'info', :name => "Logins", :message => "Login...", :update_stats => true, :color => [1.5, 1.0, 0.5, 1.0]) if method == "POST" && url.include?('login')
-      add_event(:block => 'info', :name => "Sales", :message => "$", :update_stats => true, :color => [1.5, 0.0, 0.0, 1.0]) if method == "POST" && url.include?('/checkout')
-      add_event(:block => 'info', :name => "Signups", :message => "New User...", :update_stats => true, :color => [1.0, 1.0, 1.0, 1.0]) if( method == "POST" && (url.include?('/signup') || url.include?('/users/create')))
+      #add_event(:block => 'info', :name => "Logins", :message => "Login...", :update_stats => true, :color => [1.5, 1.0, 0.5, 1.0]) if method == "POST" && url.include?('login')
+      #add_event(:block => 'info', :name => "Sales", :message => "$", :update_stats => true, :color => [1.5, 0.0, 0.0, 1.0]) if method == "POST" && url.include?('/checkout')
+      #add_event(:block => 'info', :name => "Signups", :message => "New User...", :update_stats => true, :color => [1.0, 1.0, 1.0, 1.0]) if( method == "POST" && (url.include?('/signup') || url.include?('/users/create')))
+      add_event(:block => 'info', :name => "Signups", :message => "New User...", :update_stats => true, :color => [1.0, 1.0, 1.0, 1.0]) if( method == "POST" && url.include?('activation_notice'))
+      add_event(:block => 'info', :name => "Quizes Results", :message => "Quiz attempt...", :update_stats => true, :color => [1.0, 1.0, 6.0, 1.0]) if(url.include?('quiz/results'))
     end
   end
 end
